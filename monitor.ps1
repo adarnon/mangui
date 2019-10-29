@@ -1,3 +1,6 @@
+# Dependencies
+Import-Module .\Uptime.ps1
+
 $MonitorCode = @"
 using System;
 using System.Collections; 
@@ -21,17 +24,6 @@ public class WindowMonitor {
     private const uint WINEVENT_OUTOFCONTEXT = 0;
     private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
-    // Structs
-    [StructLayout(LayoutKind.Sequential)]
-    public struct MSG
-    {
-        public IntPtr hwnd;
-        public uint message;
-        public IntPtr wParam;
-        public IntPtr lParam;
-        public uint time;
-    }
-
     // Function types
     public delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild,
     uint dwEventThread, uint dwmsEventTime);
@@ -44,14 +36,6 @@ public class WindowMonitor {
     private static extern IntPtr GetForegroundWindow(); // XXX MIGHT NOT NEED THIS
     [DllImport("user32.dll", SetLastError = true)]
     public static extern int GetWindowThreadProcessId(IntPtr hWnd, out uint ProcessId);
-    [DllImport("user32.dll", SetLastError = true)]
-
-    // XXX DELETE THIS
-    public static extern int GetMessage(out MSG lpMsg, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
-    [DllImport("user32.dll", SetLastError = true)]
-    static extern bool TranslateMessage([In] ref MSG lpMsg);
-    [DllImport("user32.dll", SetLastError = true)]
-    static extern IntPtr DispatchMessage([In] ref MSG lpmsg);
 
     public class WinEventHookException : Exception
     {
@@ -77,19 +61,6 @@ public class WindowMonitor {
         _delegate = null;
     } 
 
-    // XXX DELETE THIS
-    public void Run() {
-        MSG msg;
-        int ret;
-        while ((ret = GetMessage(out msg, IntPtr.Zero, 0, 0)) != 0) {
-            if (ret > 0) {
-                TranslateMessage(ref msg);
-                DispatchMessage(ref msg);
-            }
-            ret = 0;
-        }
-    }
-
     private void WinEventProc(IntPtr hWinEventHook, uint dwEvent, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
     {
         if (dwEvent == EVENT_SYSTEM_FOREGROUND) {
@@ -107,8 +78,50 @@ public class WindowMonitor {
 }
 "@
 
-$monitorType = Add-Type $MonitorCode -PassThru
-
+$null = Add-Type $MonitorCode -PassThru
 $monitor = New-Object WindowMonitor
 
-#Read-Host -Prompt "Press Enter to exit"
+# Do the monitoring
+# XXX Known bug: last process will be missing
+$monitor.Enable()
+Read-Host -Prompt "Press ENTER when done"
+$doneTimestamp = (Get-Uptime).Uptime.TotalMilliseconds # XXX Probably won't use this
+Start-Sleep -Seconds 3 # XXX Race condition: must let message pump clear all messages before calling Disable()
+$monitor.Disable()
+
+# Transform to a named tuple array
+$changes = @()
+$monitor.Changes | ForEach-Object { $changes += New-Object PSObject -Property @{Process=$_.Item1;Time=$_.Item2}  }
+
+# XXX
+# Print all changes for visual inspection
+foreach ($i in (1..($changes.Count - 1))) {
+    Write-Host ("{0}: {1}" -f $i, ($changes[$i]))
+}
+
+# Analyze!
+$seen = @{} # Whether we've seen this process before
+$countTime = @{} # Aggregate time counter
+$countSwitches = @{} # Switch counter
+foreach ($i in (1..($changes.Count - 2))) { # -2 since we're always looking one change forward
+    $curr = $changes[$i]
+    $pname = $curr.Process.ProcessName
+    $next = $changes[$i + 1]
+
+    if (-Not ($seen.ContainsKey($pname))) {
+        $seen[$pname] = $true
+        $countTime[$pname] = 0
+        $countSwitches[$pname] = 0
+    }
+
+    # Time
+    $addTime = $next.Time - $curr.Time
+    $countTime[$pname] += $addTime
+
+    # Switches
+    ++$countSwitches[$pname]
+}
+Write-Host ("Time spent by process: {0}" -f ($countTime | Out-String))
+
+# Processes we care about
+$taskProcs = @("chrome", "ubuntu")
