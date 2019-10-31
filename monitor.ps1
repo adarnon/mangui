@@ -119,7 +119,7 @@ Write-Host ("Time spent by process: {0}" -f ($countTime | Out-String))
 Write-Host ("Switches: {0}" -f ($countSwitches | Out-String))
 
 # Output row
-# Timestamp, Chrome Time, Chrome Switches, Ubuntu Switches
+# Timestamp, Chrome Time, Chrome Switches, Ubuntu Time, Ubuntu Switches
 $row = New-Object System.Object
 $row | Add-Member -MemberType NoteProperty -Name "time" -Value $(Get-Date -Format FileDateTimeUniversal)
 @("chrome", "ubuntu") | ForEach-Object {
