@@ -93,12 +93,6 @@ $monitor.Disable()
 $changes = @()
 $monitor.Changes | ForEach-Object { $changes += New-Object PSObject -Property @{Process=$_.Item1;Time=$_.Item2}  }
 
-# XXX
-# Print all changes for visual inspection
-foreach ($i in (1..($changes.Count - 1))) {
-    Write-Host ("{0}: {1}" -f $i, ($changes[$i]))
-}
-
 # Analyze!
 $seen = @{} # Whether we've seen this process before
 $countTime = @{} # Aggregate time counter
@@ -122,6 +116,16 @@ foreach ($i in (1..($changes.Count - 2))) { # -2 since we're always looking one 
     ++$countSwitches[$pname]
 }
 Write-Host ("Time spent by process: {0}" -f ($countTime | Out-String))
+Write-Host ("Switches: {0}" -f ($countSwitches | Out-String))
 
-# Processes we care about
-$taskProcs = @("chrome", "ubuntu")
+# Output row
+# Timestamp, Chrome Time, Chrome Switches, Ubuntu Switches
+$row = New-Object System.Object
+$row | Add-Member -MemberType NoteProperty -Name "time" -Value $(Get-Date -Format FileDateTimeUniversal)
+@("chrome", "ubuntu") | ForEach-Object {
+    $row | Add-Member -MemberType NoteProperty -Name "$($_)_time" -Value $countTime[$_]
+    $row | Add-Member -MemberType NoteProperty -Name "$($_)_switches" -Value $countSwitches[$_]
+}
+
+# Export!
+$row | Export-Csv -Append -Path "monitor.csv" -NoTypeInformation
