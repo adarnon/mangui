@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "jroff": "git+ssh://git@github.com/roperzh/jroff.git"
+    "jroff": "git+ssh://git@github.com/roperzh/jroff.git",
+    "pug": "^2.0.4"
   }
 }
