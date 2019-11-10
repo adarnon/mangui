@@ -1,1 +1,1 @@
-var Jroff = require('Jroff')
+var Jroff = require('jroff')
