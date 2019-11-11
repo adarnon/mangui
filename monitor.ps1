@@ -85,7 +85,7 @@ $monitor = New-Object WindowMonitor
 # XXX Known bug: last process will be missing
 $monitor.Enable()
 Read-Host -Prompt "Press ENTER when done"
-$doneTimestamp = (Get-Uptime).Uptime.TotalMilliseconds # XXX Probably won't use this
+#$doneTimestamp = (Get-Uptime).Uptime.TotalMilliseconds # XXX Probably won't use this
 Start-Sleep -Seconds 3 # XXX Race condition: must let message pump clear all messages before calling Disable()
 $monitor.Disable()
 
