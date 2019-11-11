@@ -11,7 +11,7 @@
     "debug": "~2.6.9",
     "express": "^4.16.4",
     "http-errors": "^1.6.3",
-    "jroff": "git+ssh://git@github.com/roperzh/jroff.git",
+    "jroff": "git+ssh://git@github.com/adarnon/jroff.git",
     "morgan": "^1.9.1",
     "pug": "2.0.0-beta11"
   }

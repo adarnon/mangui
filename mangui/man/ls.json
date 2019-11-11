@@ -1,0 +1,8 @@
+{
+    "name": "ls - list directory contents",
+    "synopsis": ["ls [OPTION]... [FILE]..."],
+    "description": "List  information  about  the FILEs (the current directory by default).\nSort entries alphabetically if none of -cftuvSUX nor --sort.\nMandatory arguments to long options are  mandatory  for  short  options\ntoo.",
+    "options": [
+        
+    ]
+}
