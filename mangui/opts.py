@@ -41,7 +41,7 @@ def parse(args):
                 descs = []
 
         # Flush last
-        allopts.append({ 'cmds': cmds, 'desc': '\n'.join(descs) })
+        allopts.append({ 'args': cmds, 'desc': '\n'.join(descs) })
 
     with open(args.outfile, 'w', encoding='utf-8') as outf:
         json.dump(allopts, outf, indent=2)
