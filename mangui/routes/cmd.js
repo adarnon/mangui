@@ -3,6 +3,10 @@ var router = express.Router();
 
 var fs = require('fs');
 
+router.get('/', function(req, res, next) {
+  res.send('Choose a command');
+});
+
 router.get('/:cmd', function(req, res, next) {
   fs.readFile(`man/${req.params.cmd}.json`, (err, data) => {
     if (err) throw err;
