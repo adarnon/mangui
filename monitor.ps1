@@ -81,6 +81,9 @@ public class WindowMonitor {
 $null = Add-Type $MonitorCode -PassThru
 $monitor = New-Object WindowMonitor
 
+# Get run tag
+$tag = Read-Host -Prompt "Please enter run description (tester, student, question #)"
+
 # Do the monitoring
 # XXX Known bug: last process will be missing
 $monitor.Enable()
@@ -122,6 +125,7 @@ Write-Host ("Switches: {0}" -f ($countSwitches | Out-String))
 # Timestamp, Chrome Time, Chrome Switches, Ubuntu Time, Ubuntu Switches
 $row = New-Object System.Object
 $row | Add-Member -MemberType NoteProperty -Name "time" -Value $(Get-Date -Format FileDateTimeUniversal)
+$row | Add-Member -MemberType NoteProperty -Name "tag" -Value $tag
 @("chrome", "ubuntu") | ForEach-Object {
     $row | Add-Member -MemberType NoteProperty -Name "$($_)_time" -Value $countTime[$_]
     $row | Add-Member -MemberType NoteProperty -Name "$($_)_switches" -Value $countSwitches[$_]
