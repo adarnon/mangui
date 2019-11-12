@@ -8,307 +8,542 @@
     "options": [
         {
             "cmds": [
-                "--help"
+                {
+                    "name": "--help",
+                    "type": "binary"
+                }
             ],
             "desc": "Print a usage message  briefly  summarizing  these  command-line\noptions and the bug-reporting address, then exit."
         },
         {
             "cmds": [
-                "-V",
-                "--version"
+                {
+                    "name": "-V",
+                    "type": "binary"
+                },
+                {
+                    "name": "--version",
+                    "type": "binary"
+                }
             ],
             "desc": "Print  the version number of grep to the standard output stream.\nThis version number should be included in all bug  reports  (see\nbelow)."
         },
         {
             "cmds": [
-                "-E",
-                "--extended-regexp"
+                {
+                    "name": "-E",
+                    "type": "binary"
+                },
+                {
+                    "name": "--extended-regexp",
+                    "type": "binary"
+                }
             ],
             "desc": "Interpret  PATTERN  as  an extended regular expression (ERE, see\nbelow).  (-E is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-F",
-                "--fixed-strings"
+                {
+                    "name": "-F",
+                    "type": "binary"
+                },
+                {
+                    "name": "--fixed-strings",
+                    "type": "binary"
+                }
             ],
             "desc": "Interpret PATTERN as a  list  of  fixed  strings,  separated  by\nnewlines,  any  of  which is to be matched.  (-F is specified by\nPOSIX.)"
         },
         {
             "cmds": [
-                "-G",
-                "--basic-regexp"
+                {
+                    "name": "-G",
+                    "type": "binary"
+                },
+                {
+                    "name": "--basic-regexp",
+                    "type": "binary"
+                }
             ],
             "desc": "Interpret PATTERN  as  a  basic  regular  expression  (BRE,  see\nbelow).  This is the default."
         },
         {
             "cmds": [
-                "-P",
-                "--perl-regexp"
+                {
+                    "name": "-P",
+                    "type": "binary"
+                },
+                {
+                    "name": "--perl-regexp",
+                    "type": "binary"
+                }
             ],
             "desc": "Interpret  PATTERN as a Perl regular expression.  This is highly\nexperimental and grep -P may warn of unimplemented features."
         },
         {
             "cmds": [
-                "-e"
+                {
+                    "name": "-e",
+                    "type": "binary"
+                }
             ],
             "desc": "PATTERN, --regexp=PATTERN\nUse PATTERN as  the  pattern.   This  can  be  used  to  specify\nmultiple search patterns, or to protect a pattern beginning with\na hyphen (-).  (-e is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-f"
+                {
+                    "name": "-f",
+                    "type": "binary"
+                }
             ],
             "desc": "FILE, --file=FILE\nObtain patterns  from  FILE,  one  per  line.   The  empty  file\ncontains  zero  patterns, and therefore matches nothing.  (-f is\nspecified by POSIX.)"
         },
         {
             "cmds": [
-                "-i",
-                "--ignore-case"
+                {
+                    "name": "-i",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore-case",
+                    "type": "binary"
+                }
             ],
             "desc": "Ignore case distinctions in  both  the  PATTERN  and  the  input\nfiles.  (-i is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-v",
-                "--invert-match"
+                {
+                    "name": "-v",
+                    "type": "binary"
+                },
+                {
+                    "name": "--invert-match",
+                    "type": "binary"
+                }
             ],
             "desc": "Invert the sense of matching, to select non-matching lines.  (-v\nis specified by POSIX.)"
         },
         {
             "cmds": [
-                "-w",
-                "--word-regexp"
+                {
+                    "name": "-w",
+                    "type": "binary"
+                },
+                {
+                    "name": "--word-regexp",
+                    "type": "binary"
+                }
             ],
             "desc": "Select only those  lines  containing  matches  that  form  whole\nwords.   The  test is that the matching substring must either be\nat the  beginning  of  the  line,  or  preceded  by  a  non-word\nconstituent  character.  Similarly, it must be either at the end\nof the line or followed by  a  non-word  constituent  character.\nWord-constituent   characters   are  letters,  digits,  and  the\nunderscore."
         },
         {
             "cmds": [
-                "-x",
-                "--line-regexp"
+                {
+                    "name": "-x",
+                    "type": "binary"
+                },
+                {
+                    "name": "--line-regexp",
+                    "type": "binary"
+                }
             ],
             "desc": "Select only those matches that exactly  match  the  whole  line.\n(-x is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-y"
+                {
+                    "name": "-y",
+                    "type": "binary"
+                }
             ],
             "desc": "Obsolete synonym for -i."
         },
         {
             "cmds": [
-                "-c",
-                "--count"
+                {
+                    "name": "-c",
+                    "type": "binary"
+                },
+                {
+                    "name": "--count",
+                    "type": "binary"
+                }
             ],
             "desc": "Suppress  normal output; instead print a count of matching lines\nfor each input file.  With the -v,  --invert-match  option  (see\nbelow), count non-matching lines.  (-c is specified by POSIX.)"
         },
         {
             "cmds": [
-                "--color[=WHEN]",
-                "--colour[=WHEN]"
+                {
+                    "name": "--color[",
+                    "metavar": "WHEN]",
+                    "type": "str"
+                },
+                {
+                    "name": "--colour[",
+                    "metavar": "WHEN]",
+                    "type": "str"
+                }
             ],
             "desc": "Surround   the  matched  (non-empty)  strings,  matching  lines,\ncontext lines, file  names,  line  numbers,  byte  offsets,  and\nseparators  (for fields and groups of context lines) with escape\nsequences to display them in color on the terminal.  The  colors\nare  defined  by  the  environment  variable  GREP_COLORS.   The\ndeprecated environment variable GREP_COLOR is  still  supported,\nbut  its setting does not have priority.  WHEN is never, always,\nor auto."
         },
         {
             "cmds": [
-                "-L",
-                "--files-without-match"
+                {
+                    "name": "-L",
+                    "type": "binary"
+                },
+                {
+                    "name": "--files-without-match",
+                    "type": "binary"
+                }
             ],
             "desc": "Suppress normal output; instead print the  name  of  each  input\nfile from which no output would normally have been printed.  The\nscanning will stop on the first match."
         },
         {
             "cmds": [
-                "-l",
-                "--files-with-matches"
+                {
+                    "name": "-l",
+                    "type": "binary"
+                },
+                {
+                    "name": "--files-with-matches",
+                    "type": "binary"
+                }
             ],
             "desc": "Suppress normal output; instead print the  name  of  each  input\nfile  from  which  output would normally have been printed.  The\nscanning will stop on the first  match.   (-l  is  specified  by\nPOSIX.)"
         },
         {
             "cmds": [
-                "--count"
+                {
+                    "name": "--count",
+                    "type": "binary"
+                }
             ],
             "desc": "NUM, --max-count=NUM\nStop  reading  a file after NUM matching lines.  If the input is\nstandard input from a regular file, and NUM matching  lines  are\noutput,  grep  ensures  that the standard input is positioned to\njust after the last matching line before exiting, regardless  of\nthe  presence of trailing context lines.  This enables a calling\nprocess to resume a search.  When grep stops after NUM  matching\nlines,  it  outputs  any trailing context lines.  When the -c or\noption is also  used,  grep  does  not  output  a  count\ngreater  than NUM.  When the -v or --invert-match option is also\nused, grep stops after outputting NUM non-matching lines."
         },
         {
             "cmds": [
-                "-o",
-                "--only-matching"
+                {
+                    "name": "-o",
+                    "type": "binary"
+                },
+                {
+                    "name": "--only-matching",
+                    "type": "binary"
+                }
             ],
             "desc": "Print only the matched (non-empty) parts  of  a  matching  line,\nwith each such part on a separate output line."
         },
         {
             "cmds": [
-                "-q",
-                "--quiet",
-                "--silent"
+                {
+                    "name": "-q",
+                    "type": "binary"
+                },
+                {
+                    "name": "--quiet",
+                    "type": "binary"
+                },
+                {
+                    "name": "--silent",
+                    "type": "binary"
+                }
             ],
             "desc": "Quiet;   do   not  write  anything  to  standard  output.   Exit\nimmediately with zero status if any match is found, even  if  an\nerror  was  detected.   Also see the -s or --no-messages option.\n(-q is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-s",
-                "--no-messages"
+                {
+                    "name": "-s",
+                    "type": "binary"
+                },
+                {
+                    "name": "--no-messages",
+                    "type": "binary"
+                }
             ],
             "desc": "Suppress error messages about nonexistent or  unreadable  files.\nPortability note: unlike GNU grep, 7th Edition Unix grep did not\nconform to POSIX, because it lacked -q and its -s option behaved\nlike  GNU  grep's  -q option.  USG-style grep also lacked -q but\nits -s option behaved like GNU  grep.   Portable  shell  scripts\nshould  avoid  both  -q  and -s and should redirect standard and\nerror output to /dev/null instead.  (-s is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-b",
-                "--byte-offset"
+                {
+                    "name": "-b",
+                    "type": "binary"
+                },
+                {
+                    "name": "--byte-offset",
+                    "type": "binary"
+                }
             ],
             "desc": "Print the 0-based byte offset within the input file before  each\nline of output.  If -o (--only-matching) is specified, print the\noffset of the matching part itself."
         },
         {
             "cmds": [
-                "-H",
-                "--with-filename"
+                {
+                    "name": "-H",
+                    "type": "binary"
+                },
+                {
+                    "name": "--with-filename",
+                    "type": "binary"
+                }
             ],
             "desc": "Print the file name for each match.  This is  the  default  when\nthere is more than one file to search."
         },
         {
             "cmds": [
-                "-h",
-                "--no-filename"
+                {
+                    "name": "-h",
+                    "type": "binary"
+                },
+                {
+                    "name": "--no-filename",
+                    "type": "binary"
+                }
             ],
             "desc": "Suppress  the  prefixing  of  file names on output.  This is the\ndefault when there is only one file (or only standard input)  to\nsearch."
         },
         {
             "cmds": [
-                "--label=LABEL"
+                {
+                    "name": "--label",
+                    "metavar": "LABEL",
+                    "type": "str"
+                }
             ],
             "desc": "Display  input  actually  coming  from  standard  input as input\ncoming from file LABEL.  This is  especially  useful  for  tools\nlike zgrep, e.g., gzip -cd foo.gz | grep --label=foo something"
         },
         {
             "cmds": [
-                "-n",
-                "--line-number"
+                {
+                    "name": "-n",
+                    "type": "binary"
+                },
+                {
+                    "name": "--line-number",
+                    "type": "binary"
+                }
             ],
             "desc": "Prefix  each  line of output with the 1-based line number within\nits input file.  (-n is specified by POSIX.)"
         },
         {
             "cmds": [
-                "-T",
-                "--initial-tab"
+                {
+                    "name": "-T",
+                    "type": "binary"
+                },
+                {
+                    "name": "--initial-tab",
+                    "type": "binary"
+                }
             ],
             "desc": "Make sure that the first character of actual line  content  lies\non a tab stop, so that the alignment of tabs looks normal.  This\nis useful with options that prefix their output  to  the  actual\ncontent:  -H,-n,  and  -b.   In order to improve the probability\nthat lines from a single file will all start at the same column,\nthis also causes the line number and byte offset (if present) to\nbe printed in a minimum size field width."
         },
         {
             "cmds": [
-                "-u",
-                "--unix-byte-offsets"
+                {
+                    "name": "-u",
+                    "type": "binary"
+                },
+                {
+                    "name": "--unix-byte-offsets",
+                    "type": "binary"
+                }
             ],
             "desc": "Report Unix-style byte offsets.   This  switch  causes  grep  to\nreport  byte offsets as if the file were a Unix-style text file,\ni.e., with  CR  characters  stripped  off.   This  will  produce\nresults  identical  to  running  grep  on  a Unix machine.  This\noption has no effect unless -b option is also used;  it  has  no\neffect on platforms other than MS-DOS and MS-Windows."
         },
         {
             "cmds": [
-                "-print0",
-                " perl  -0",
-                " sort  -z",
-                "and xargs -0 to process arbitrary"
+                {
+                    "name": "-print0",
+                    "type": "binary"
+                },
+                {
+                    "name": " perl  -0",
+                    "type": "binary"
+                },
+                {
+                    "name": " sort  -z",
+                    "type": "binary"
+                },
+                {
+                    "name": "and xargs -0 to process arbitrary",
+                    "type": "binary"
+                }
             ],
             "desc": "Output  a  zero  byte  (the  ASCII NUL character) instead of the\ncharacter that normally follows a file name.  For example,  grep\noutputs  a  zero  byte  after each file name instead of the\nusual newline.  This option makes the output  unambiguous,  even\nin the presence of file names containing unusual characters like\nnewlines.  This option can  be  used  with  commands  like  find\nfile names, even those that contain newline characters."
         },
         {
             "cmds": [
-                "-A"
+                {
+                    "name": "-A",
+                    "type": "binary"
+                }
             ],
             "desc": "NUM, --after-context=NUM\nPrint NUM  lines  of  trailing  context  after  matching  lines.\nPlaces   a  line  containing  a  group  separator  (--)  between\ncontiguous groups of matches.  With the  -o  or  --only-matching\noption, this has no effect and a warning is given."
         },
         {
             "cmds": [
-                "-B"
+                {
+                    "name": "-B",
+                    "type": "binary"
+                }
             ],
             "desc": "NUM, --before-context=NUM\nPrint  NUM  lines  of  leading  context  before  matching lines.\nPlaces  a  line  containing  a  group  separator  (--)   between\ncontiguous  groups  of  matches.  With the -o or --only-matching\noption, this has no effect and a warning is given."
         },
         {
             "cmds": [
-                "-C"
+                {
+                    "name": "-C",
+                    "type": "binary"
+                }
             ],
             "desc": "NUM, -NUM, --context=NUM\nPrint NUM lines of output context.  Places a line  containing  a\ngroup separator (--) between contiguous groups of matches.  With\nthe -o or --only-matching option,  this  has  no  effect  and  a\nwarning is given."
         },
         {
             "cmds": [
-                "-a",
-                "--text"
+                {
+                    "name": "-a",
+                    "type": "binary"
+                },
+                {
+                    "name": "--text",
+                    "type": "binary"
+                }
             ],
             "desc": "Process  a binary file as if it were text; this is equivalent to\nthe --binary-files=text option."
         },
         {
             "cmds": [
-                "--binary-files=text"
+                {
+                    "name": "--binary-files",
+                    "metavar": "text",
+                    "type": "str"
+                }
             ],
             "desc": "If the first few bytes of a file indicate that the file contains\nbinary  data, assume that the file is of type TYPE.  By default,\nTYPE is binary, and grep  normally  outputs  either  a  one-line\nmessage  saying  that  a  binary  file matches, or no message if\nthere is no match.  If TYPE is without-match, grep assumes  that\na  binary  file  does  not  match;  this is equivalent to the -I\noption.  If TYPE is text, grep processes a binary file as if  it\nwere  text;  this is equivalent to the -a option.  Warning: grep\nmight output binary garbage, which can  have\nnasty  side  effects  if  the  output  is  a terminal and if the\nterminal driver interprets some of it as commands."
         },
         {
             "cmds": [
-                "-D"
+                {
+                    "name": "-D",
+                    "type": "binary"
+                }
             ],
             "desc": "ACTION, --devices=ACTION\nIf an input file is a device, FIFO  or  socket,  use  ACTION  to\nprocess  it.   By  default,  ACTION  is  read,  which means that\ndevices are read just as if they were ordinary files.  If ACTION\nis skip, devices are silently skipped."
         },
         {
             "cmds": [
-                "-d"
+                {
+                    "name": "-d",
+                    "type": "binary"
+                }
             ],
             "desc": "ACTION, --directories=ACTION\nIf  an  input file is a directory, use ACTION to process it.  By\ndefault, ACTION is read, which means that directories  are  read\njust  as  if  they  were  ordinary  files.   If  ACTION is skip,\ndirectories are silently skipped.  If ACTION  is  recurse,  grep\nreads  all  files  under  each  directory,  recursively; this is\nequivalent to the -r option."
         },
         {
             "cmds": [
-                "--exclude=GLOB"
+                {
+                    "name": "--exclude",
+                    "metavar": "GLOB",
+                    "type": "str"
+                }
             ],
             "desc": "Skip  files  whose  base  name  matches  GLOB  (using   wildcard\nmatching).   A  file-name  glob  can  use  *,  ?,  and [...]  as\nwildcards, and \\ to quote  a  wildcard  or  backslash  character\nliterally."
         },
         {
             "cmds": [
-                "--exclude)."
+                {
+                    "name": "--exclude).",
+                    "type": "binary"
+                }
             ],
             "desc": "Skip  files  whose  base name matches any of the file-name globs\nread from FILE  (using  wildcard  matching  as  described  under"
         },
         {
             "cmds": [
-                "--exclude-dir=DIR"
+                {
+                    "name": "--exclude-dir",
+                    "metavar": "DIR",
+                    "type": "str"
+                }
             ],
             "desc": "Exclude  directories  matching  the  pattern  DIR from recursive\nsearches."
         },
         {
             "cmds": [
-                "-I"
+                {
+                    "name": "-I",
+                    "type": "binary"
+                }
             ],
             "desc": "Process a binary file as if it did not  contain  matching  data;\nthis is equivalent to the --binary-files=without-match option."
         },
         {
             "cmds": [
-                "--include=GLOB"
+                {
+                    "name": "--include",
+                    "metavar": "GLOB",
+                    "type": "str"
+                }
             ],
             "desc": "Search  only  files whose base name matches GLOB (using wildcard\nmatching as described under --exclude)."
         },
         {
             "cmds": [
-                "-R",
-                "-r",
-                "--recursive"
+                {
+                    "name": "-R",
+                    "type": "binary"
+                },
+                {
+                    "name": "-r",
+                    "type": "binary"
+                },
+                {
+                    "name": "--recursive",
+                    "type": "binary"
+                }
             ],
             "desc": "Read all  files  under  each  directory,  recursively;  this  is\nequivalent to the -d recurse option."
         },
         {
             "cmds": [
-                "--line-buffered"
+                {
+                    "name": "--line-buffered",
+                    "type": "binary"
+                }
             ],
             "desc": "Use  line  buffering  on  output.   This can cause a performance\npenalty."
         },
         {
             "cmds": [
-                "--mmap"
+                {
+                    "name": "--mmap",
+                    "type": "binary"
+                }
             ],
             "desc": "If possible, use the mmap(2) system call to read input,  instead\nof  the default read(2) system call.  In some situations, --mmap\nyields better performance.  However, --mmap can cause  undefined\nbehavior  (including  core dumps) if an input file shrinks while\ngrep is operating, or if an I/O error occurs."
         },
         {
             "cmds": [
-                "-U",
-                "--binary"
+                {
+                    "name": "-U",
+                    "type": "binary"
+                },
+                {
+                    "name": "--binary",
+                    "type": "binary"
+                }
             ],
             "desc": "Treat the file(s) as binary.  By default, under MS-DOS  and  MS-\nWindows,  grep  guesses the file type by looking at the contents\nof the first 32KB read from the file.  If grep decides the  file\nis  a  text  file, it strips the CR characters from the original\nfile contents (to make regular expressions with  ^  and  $  work\ncorrectly).  Specifying -U overrules this guesswork, causing all\nfiles to be read and passed to the matching mechanism  verbatim;\nif  the  file is a text file with CR/LF pairs at the end of each\nline, this will cause some regular expressions  to  fail.   This\noption  has  no  effect  on  platforms other than MS-DOS and MS-\nWindows."
         },
         {
             "args": [
-                "-Z"
+                {
+                    "name": "-Z",
+                    "type": "binary"
+                }
             ],
             "desc": "Treat the input as a set of lines, each  terminated  by  a  zero\nbyte  (the  ASCII NUL character) instead of a newline.  Like the\nor --null option, this option can be used with commands  like\nsort -z to process arbitrary file names."
         }

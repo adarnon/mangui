@@ -3,6 +3,28 @@ import json
 from pathlib import Path
 import sys
 
+def parse_cmd(cmdstrs):
+    if not isinstance(cmdstrs, list):
+        cmdstrs = [cmdstrs]
+
+    out = []
+    for c in cmdstrs:
+        parts = c.split('=')
+        if len(parts) == 1:
+            out.append({
+                'name': parts[0],
+                'type': 'binary',
+            })
+        elif len(parts) == 2:
+            out.append({
+                'name': parts[0],
+                'metavar': parts[1],
+                'type': 'str',
+            })
+        else:
+            raise RuntimeError
+
+    return out
 
 def parse(args):
     allopts = []
@@ -19,18 +41,18 @@ def parse(args):
 
                 if index_comma == -1:
                     spl = line.split(' ', 1)
-                    cmds = spl[:1]
+                    cmds = parse_cmd(spl[:1])
                     d = ' '.join(spl[1:]).strip()
                     if d:
                         descs.append(d)
                 elif index_space < index_comma:
                     spl = line.split(' ', 1)
-                    cmds = spl[:1]
+                    cmds = parse_cmd(spl[:1])
                     d = ' '.join(spl[1:]).strip()
                     if d:
                         descs.append(d)
                 else:
-                    cmds = line.split(', ')
+                    cmds = parse_cmd(line.split(', '))
             elif line:
                 # Description line
                 descs.append(line)

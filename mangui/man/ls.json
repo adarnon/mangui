@@ -7,116 +7,194 @@
     "options": [
         {
             "cmds": [
-                "-a",
-                "--all"
+                {
+                    "name": "-a",
+                    "type": "binary"
+                },
+                {
+                    "name": "--all",
+                    "type": "binary"
+                }
             ],
             "desc": "do not ignore entries starting with ."
         },
         {
             "cmds": [
-                "-A",
-                "--almost-all"
+                {
+                    "name": "-A",
+                    "type": "binary"
+                },
+                {
+                    "name": "--almost-all",
+                    "type": "binary"
+                }
             ],
             "desc": "do not list implied . and .."
         },
         {
             "cmds": [
-                "--author"
+                {
+                    "name": "--author",
+                    "type": "binary"
+                }
             ],
             "desc": "with -l, print the author of each file"
         },
         {
             "cmds": [
-                "-b",
-                "--escape"
+                {
+                    "name": "-b",
+                    "type": "binary"
+                },
+                {
+                    "name": "--escape",
+                    "type": "binary"
+                }
             ],
             "desc": "print octal escapes for nongraphic characters"
         },
         {
             "cmds": [
-                "--block-size=SIZE"
+                {
+                    "name": "--block-size",
+                    "metavar": "SIZE",
+                    "type": "str"
+                }
             ],
             "desc": "use SIZE-byte blocks"
         },
         {
             "cmds": [
-                "-B",
-                "--ignore-backups"
+                {
+                    "name": "-B",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore-backups",
+                    "type": "binary"
+                }
             ],
             "desc": "do not list implied entries ending with ~"
         },
         {
             "cmds": [
-                "-c"
+                {
+                    "name": "-c",
+                    "type": "binary"
+                }
             ],
             "desc": "with -lt: sort by, and show, ctime (time of last modification of\nfile status information) with -l: show ctime and  sort  by  name\notherwise: sort by ctime"
         },
         {
             "cmds": [
-                "-C"
+                {
+                    "name": "-C",
+                    "type": "binary"
+                }
             ],
             "desc": "list entries by columns"
         },
         {
             "cmds": [
-                "--color[=WHEN]"
+                {
+                    "name": "--color[",
+                    "metavar": "WHEN]",
+                    "type": "str"
+                }
             ],
             "desc": "control  whether  color is used to distinguish file types.  WHEN\nmay be `never', `always', or `auto'"
         },
         {
             "cmds": [
-                "-d",
-                "--directory"
+                {
+                    "name": "-d",
+                    "type": "binary"
+                },
+                {
+                    "name": "--directory",
+                    "type": "binary"
+                }
             ],
             "desc": "list directory entries instead of contents, and do not  derefer\u2010\nence symbolic links"
         },
         {
             "cmds": [
-                "-D",
-                "--dired"
+                {
+                    "name": "-D",
+                    "type": "binary"
+                },
+                {
+                    "name": "--dired",
+                    "type": "binary"
+                }
             ],
             "desc": "generate output designed for Emacs' dired mode"
         },
         {
             "cmds": [
-                "-f"
+                {
+                    "name": "-f",
+                    "type": "binary"
+                }
             ],
             "desc": "do not sort, enable -aU, disable -ls --color"
         },
         {
             "cmds": [
-                "-F",
-                "--classify"
+                {
+                    "name": "-F",
+                    "type": "binary"
+                },
+                {
+                    "name": "--classify",
+                    "type": "binary"
+                }
             ],
             "desc": "append indicator (one of */=>@|) to entries"
         },
         {
             "cmds": [
-                "--file-type"
+                {
+                    "name": "--file-type",
+                    "type": "binary"
+                }
             ],
             "desc": "likewise, except do not append `*'"
         },
         {
             "cmds": [
-                "--format=WORD"
+                {
+                    "name": "--format",
+                    "metavar": "WORD",
+                    "type": "str"
+                }
             ],
             "desc": "across  -x, commas -m, horizontal -x, long -l, single-column -1,\nverbose -l, vertical -C"
         },
         {
             "cmds": [
-                "--full-time"
+                {
+                    "name": "--full-time",
+                    "type": "binary"
+                }
             ],
             "desc": "like -l --time-style=full-iso"
         },
         {
             "cmds": [
-                "-g"
+                {
+                    "name": "-g",
+                    "type": "binary"
+                }
             ],
             "desc": "like -l, but do not list owner"
         },
         {
             "cmds": [
-                "--group-directories-first"
+                {
+                    "name": "--group-directories-first",
+                    "type": "binary"
+                }
             ],
             "desc": "group directories before files."
         },
@@ -126,262 +204,454 @@
         },
         {
             "cmds": [
-                "-G",
-                "--no-group"
+                {
+                    "name": "-G",
+                    "type": "binary"
+                },
+                {
+                    "name": "--no-group",
+                    "type": "binary"
+                }
             ],
             "desc": "in a long listing, don't print group names"
         },
         {
             "cmds": [
-                "-h",
-                "--human-readable"
+                {
+                    "name": "-h",
+                    "type": "binary"
+                },
+                {
+                    "name": "--human-readable",
+                    "type": "binary"
+                }
             ],
             "desc": "with -l, print sizes in human readable format (e.g., 1K 234M 2G)"
         },
         {
             "cmds": [
-                "--si"
+                {
+                    "name": "--si",
+                    "type": "binary"
+                }
             ],
             "desc": "likewise, but use powers of 1000 not 1024"
         },
         {
             "cmds": [
-                "-H",
-                "--dereference-command-line"
+                {
+                    "name": "-H",
+                    "type": "binary"
+                },
+                {
+                    "name": "--dereference-command-line",
+                    "type": "binary"
+                }
             ],
             "desc": "follow symbolic links listed on the command line"
         },
         {
             "cmds": [
-                "--dereference-command-line-symlink-to-dir"
+                {
+                    "name": "--dereference-command-line-symlink-to-dir",
+                    "type": "binary"
+                }
             ],
             "desc": "follow  each  command line symbolic link that points to a direc\u2010\ntory"
         },
         {
             "cmds": [
-                "--hide=PATTERN"
+                {
+                    "name": "--hide",
+                    "metavar": "PATTERN",
+                    "type": "str"
+                }
             ],
             "desc": "do not list implied entries matching shell  PATTERN  (overridden\nby -a or -A)"
         },
         {
             "cmds": [
-                "--indicator-style=WORD"
+                {
+                    "name": "--indicator-style",
+                    "metavar": "WORD",
+                    "type": "str"
+                }
             ],
             "desc": "append indicator with style WORD to entry names: none (default),\nslash (-p), file-type (--file-type), classify (-F)"
         },
         {
             "cmds": [
-                "-i",
-                "--inode"
+                {
+                    "name": "-i",
+                    "type": "binary"
+                },
+                {
+                    "name": "--inode",
+                    "type": "binary"
+                }
             ],
             "desc": "print the index number of each file"
         },
         {
             "cmds": [
-                "-I",
-                "--ignore=PATTERN"
+                {
+                    "name": "-I",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore",
+                    "metavar": "PATTERN",
+                    "type": "str"
+                }
             ],
             "desc": "do not list implied entries matching shell PATTERN"
         },
         {
             "cmds": [
-                "-k"
+                {
+                    "name": "-k",
+                    "type": "binary"
+                }
             ],
             "desc": "like --block-size=1K"
         },
         {
             "cmds": [
-                "-l"
+                {
+                    "name": "-l",
+                    "type": "binary"
+                }
             ],
             "desc": "use a long listing format"
         },
         {
             "cmds": [
-                "-L",
-                "--dereference"
+                {
+                    "name": "-L",
+                    "type": "binary"
+                },
+                {
+                    "name": "--dereference",
+                    "type": "binary"
+                }
             ],
             "desc": "when showing file information for a symbolic link, show informa\u2010\ntion  for  the file the link references rather than for the link\nitself"
         },
         {
             "cmds": [
-                "-m"
+                {
+                    "name": "-m",
+                    "type": "binary"
+                }
             ],
             "desc": "fill width with a comma separated list of entries"
         },
         {
             "cmds": [
-                "-n",
-                "--numeric-uid-gid"
+                {
+                    "name": "-n",
+                    "type": "binary"
+                },
+                {
+                    "name": "--numeric-uid-gid",
+                    "type": "binary"
+                }
             ],
             "desc": "like -l, but list numeric user and group IDs"
         },
         {
             "cmds": [
-                "-N",
-                "--literal"
+                {
+                    "name": "-N",
+                    "type": "binary"
+                },
+                {
+                    "name": "--literal",
+                    "type": "binary"
+                }
             ],
             "desc": "print raw entry names (don't treat e.g. control characters  spe\u2010\ncially)"
         },
         {
             "cmds": [
-                "-o"
+                {
+                    "name": "-o",
+                    "type": "binary"
+                }
             ],
             "desc": "like -l, but do not list group information"
         },
         {
             "cmds": [
-                "-p",
-                "--indicator-style=slash"
+                {
+                    "name": "-p",
+                    "type": "binary"
+                },
+                {
+                    "name": "--indicator-style",
+                    "metavar": "slash",
+                    "type": "str"
+                }
             ],
             "desc": "append / indicator to directories"
         },
         {
             "cmds": [
-                "-q",
-                "--hide-control-chars"
+                {
+                    "name": "-q",
+                    "type": "binary"
+                },
+                {
+                    "name": "--hide-control-chars",
+                    "type": "binary"
+                }
             ],
             "desc": "print ? instead of non graphic characters"
         },
         {
             "cmds": [
-                "--show-control-chars"
+                {
+                    "name": "--show-control-chars",
+                    "type": "binary"
+                }
             ],
             "desc": "show  non  graphic  characters  as-is (default unless program is\n`ls' and output is a terminal)"
         },
         {
             "cmds": [
-                "-Q",
-                "--quote-name"
+                {
+                    "name": "-Q",
+                    "type": "binary"
+                },
+                {
+                    "name": "--quote-name",
+                    "type": "binary"
+                }
             ],
             "desc": "enclose entry names in double quotes"
         },
         {
             "cmds": [
-                "--quoting-style=WORD"
+                {
+                    "name": "--quoting-style",
+                    "metavar": "WORD",
+                    "type": "str"
+                }
             ],
             "desc": "use quoting style WORD for entry names: literal, locale,  shell,\nshell-always, c, escape"
         },
         {
             "cmds": [
-                "-r",
-                "--reverse"
+                {
+                    "name": "-r",
+                    "type": "binary"
+                },
+                {
+                    "name": "--reverse",
+                    "type": "binary"
+                }
             ],
             "desc": "reverse order while sorting"
         },
         {
             "cmds": [
-                "-R",
-                "--recursive"
+                {
+                    "name": "-R",
+                    "type": "binary"
+                },
+                {
+                    "name": "--recursive",
+                    "type": "binary"
+                }
             ],
             "desc": "list subdirectories recursively"
         },
         {
             "cmds": [
-                "-s",
-                "--size"
+                {
+                    "name": "-s",
+                    "type": "binary"
+                },
+                {
+                    "name": "--size",
+                    "type": "binary"
+                }
             ],
             "desc": "print the allocated size of each file, in blocks"
         },
         {
             "cmds": [
-                "-S"
+                {
+                    "name": "-S",
+                    "type": "binary"
+                }
             ],
             "desc": "sort by file size"
         },
         {
             "cmds": [
-                "--sort=WORD"
+                {
+                    "name": "--sort",
+                    "metavar": "WORD",
+                    "type": "str"
+                }
             ],
             "desc": "sort  by  WORD  instead of name: none -U, extension -X, size -S,\ntime -t, version -v"
         },
         {
             "cmds": [
-                "-u",
-                " access  -u",
-                " use  -u",
-                "ctime -c",
-                "or status -c; use specified"
+                {
+                    "name": "-u",
+                    "type": "binary"
+                },
+                {
+                    "name": " access  -u",
+                    "type": "binary"
+                },
+                {
+                    "name": " use  -u",
+                    "type": "binary"
+                },
+                {
+                    "name": "ctime -c",
+                    "type": "binary"
+                },
+                {
+                    "name": "or status -c; use specified",
+                    "type": "binary"
+                }
             ],
             "desc": "with -l, show time as WORD instead of modification  time:  atime\ntime as sort key if --sort=time"
         },
         {
             "cmds": [
-                "--time-style=STYLE"
+                {
+                    "name": "--time-style",
+                    "metavar": "STYLE",
+                    "type": "str"
+                }
             ],
             "desc": "with -l, show times using style STYLE: full-iso, long-iso,  iso,\nlocale,  +FORMAT.   FORMAT is interpreted like `date'; if FORMAT\nis FORMAT1FORMAT2, FORMAT1 applies to non-recent  files\nand FORMAT2 to recent files; if STYLE is prefixed with `posix-',\nSTYLE takes effect only outside the POSIX locale"
         },
         {
             "cmds": [
-                "-t"
+                {
+                    "name": "-t",
+                    "type": "binary"
+                }
             ],
             "desc": "sort by modification time"
         },
         {
             "cmds": [
-                "-T",
-                "--tabsize=COLS"
+                {
+                    "name": "-T",
+                    "type": "binary"
+                },
+                {
+                    "name": "--tabsize",
+                    "metavar": "COLS",
+                    "type": "str"
+                }
             ],
             "desc": "assume tab stops at each COLS instead of 8"
         },
         {
             "cmds": [
-                "-u"
+                {
+                    "name": "-u",
+                    "type": "binary"
+                }
             ],
             "desc": "with -lt: sort by, and show, access time with  -l:  show  access\ntime and sort by name otherwise: sort by access time"
         },
         {
             "cmds": [
-                "-U"
+                {
+                    "name": "-U",
+                    "type": "binary"
+                }
             ],
             "desc": "do not sort; list entries in directory order"
         },
         {
             "cmds": [
-                "-v"
+                {
+                    "name": "-v",
+                    "type": "binary"
+                }
             ],
             "desc": "natural sort of (version) numbers within text"
         },
         {
             "cmds": [
-                "-w",
-                "--width=COLS"
+                {
+                    "name": "-w",
+                    "type": "binary"
+                },
+                {
+                    "name": "--width",
+                    "metavar": "COLS",
+                    "type": "str"
+                }
             ],
             "desc": "assume screen width instead of current value"
         },
         {
             "cmds": [
-                "-x"
+                {
+                    "name": "-x",
+                    "type": "binary"
+                }
             ],
             "desc": "list entries by lines instead of by columns"
         },
         {
             "cmds": [
-                "-X"
+                {
+                    "name": "-X",
+                    "type": "binary"
+                }
             ],
             "desc": "sort alphabetically by entry extension"
         },
         {
             "cmds": [
-                "-Z",
-                "--context"
+                {
+                    "name": "-Z",
+                    "type": "binary"
+                },
+                {
+                    "name": "--context",
+                    "type": "binary"
+                }
             ],
             "desc": "print any SELinux security context of each file"
         },
         {
             "cmds": [
-                "-1"
+                {
+                    "name": "-1",
+                    "type": "binary"
+                }
             ],
             "desc": "list one file per line"
         },
         {
             "cmds": [
-                "--help"
+                {
+                    "name": "--help",
+                    "type": "binary"
+                }
             ],
             "desc": "display this help and exit"
         },
         {
             "args": [
-                "--version"
+                {
+                    "name": "--version",
+                    "type": "binary"
+                }
             ],
             "desc": "output version information and exit"
         }
