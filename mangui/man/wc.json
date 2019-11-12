@@ -1,0 +1,10 @@
+
+{
+    "name": "wc - print newline, word, and byte counts for each file",
+    "synopsis": [
+        "wc [OPTION]... [FILE]...",
+        "wc [OPTION]... --files0-from=F"
+    ],
+    "description": "grep  searches the named input FILEs (or standard input if no files are\nnamed, or if a single hyphen-minus (-) is given as file name) for lines\ncontaining  a  match to the given PATTERN.  By default, grep prints the\nmatching lines.\nIn  addition,  three  variant  programs  egrep,  fgrep  and  rgrep  are\navailable.   egrep  is  the  same  as  grep -E.   fgrep  is the same as\ngrep -F.  rgrep is the same as grep -r.  Direct  invocation  as  either\negrep  or  fgrep  is  deprecated,  but  is provided to allow historical\napplications that rely on them to run unmodified.",
+    "options": []
+}

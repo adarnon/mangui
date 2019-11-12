@@ -1,0 +1,9 @@
+{
+    "name": "sort - sort lines of text files",
+    "synopsis": [
+        "sort [OPTION]... [FILE]...",
+        "sort [OPTION]... --files0-from=F"
+    ],
+    "description": "Write sorted concatenation of all FILE(s) to standard output.\nWith no FILE, or when FILE is -, read standard input.\nMandatory arguments to long options are mandatory for short options\ntoo.  Ordering options:",
+    "options": []
+}
