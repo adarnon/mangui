@@ -1,14 +1,15 @@
 import argparse
+from contextlib import nullcontext
 import json
 from pathlib import Path
 import sys
 
-def parse_cmd(cmdstrs):
-    if not isinstance(cmdstrs, list):
-        cmdstrs = [cmdstrs]
+def parse_cmd(argstrs):
+    if not isinstance(argstrs, list):
+        argstrs = [argstrs]
 
     out = []
-    for c in cmdstrs:
+    for c in argstrs:
         parts = c.split('=')
         if len(parts) == 1:
             out.append({
@@ -26,12 +27,23 @@ def parse_cmd(cmdstrs):
 
     return out
 
-def parse(args):
+def parse(pargs):
     allopts = []
-    with open(args.infile, 'r', encoding='utf-8') as inf:
-        cmds = []
+
+    if pargs.infile.name == '-':
+        inpath = nullcontext(sys.stdin)
+    else:
+        inpath = open(pargs.infile, 'r', encoding='utf-8')
+
+    if pargs.outfile.name == '-':
+        outpath = nullcontext(sys.stdout)
+    else:
+        outpath = open(pargs.outfile, 'w', encoding='utf=8')
+
+    with inpath as inf:
+        cargs = []
         descs = []
-        
+
         for line in inf:
             line = line.strip()
             if line.startswith('-'):
@@ -41,31 +53,31 @@ def parse(args):
 
                 if index_comma == -1:
                     spl = line.split(' ', 1)
-                    cmds = parse_cmd(spl[:1])
+                    cargs = parse_cmd(spl[:1])
                     d = ' '.join(spl[1:]).strip()
                     if d:
                         descs.append(d)
                 elif index_space < index_comma:
                     spl = line.split(' ', 1)
-                    cmds = parse_cmd(spl[:1])
+                    cargs = parse_cmd(spl[:1])
                     d = ' '.join(spl[1:]).strip()
                     if d:
                         descs.append(d)
                 else:
-                    cmds = parse_cmd(line.split(', '))
+                    cargs = parse_cmd(line.split(', '))
             elif line:
                 # Description line
                 descs.append(line)
             else:
                 # Flush
-                allopts.append({ 'cmds': cmds, 'desc': '\n'.join(descs) })
-                cmds = []
+                allopts.append({ 'args': cargs, 'desc': '\n'.join(descs) })
+                cargs = []
                 descs = []
 
         # Flush last
-        allopts.append({ 'args': cmds, 'desc': '\n'.join(descs) })
+        allopts.append({ 'args': cargs, 'desc': '\n'.join(descs) })
 
-    with open(args.outfile, 'w', encoding='utf-8') as outf:
+    with outpath as outf:
         json.dump(allopts, outf, indent=2)
 
 

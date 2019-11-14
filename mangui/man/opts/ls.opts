@@ -22,7 +22,7 @@
 
 -C     list entries by columns
 
---color[=WHEN]
+--color=WHEN
        control  whether  color is used to distinguish file types.  WHEN
        may be `never', `always', or `auto'
 

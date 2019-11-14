@@ -1,13 +1,34 @@
-extends layout
-
-block content
+doctype html
+html(lang='en')
+  head
+    title mangui: #{cmd.name}
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
     div
-        p Hello!
-        button Click Me
-
-    div
-        p Name: #{cmd.name}
-        p Synposis: #{cmd.synopsis}
-        p Description: #{cmd.description}
-        each opt in cmd.options
-            p Option: #{opt.cmds}, Description: #{opt.desc}
+        div Name: #{cmd.name}
+        div Synopsis: #{cmd.synopsis}
+        div Description: #{cmd.description}
+        div Command:
+            div
+                input(type='text' readonly)
+        table(style='width:80%', border='2')
+            tr
+                td(colspan='2')
+                    | Search: 
+                    input(type='text')
+            tr
+                th Option
+                th Description
+            each opt in cmd.options
+                tr
+                    td
+                        table(border='1')
+                            each arg in opt.args
+                                tr
+                                    td= arg.name
+                                    td
+                                        if arg.type == 'binary'
+                                            input(type='checkbox')
+                                        else if arg.type == 'str'
+                                            input(type='text')
+                    td= opt.desc
