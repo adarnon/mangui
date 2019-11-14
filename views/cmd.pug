@@ -13,6 +13,9 @@ html(lang='en')
             div
                 input#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
                 button(type='button' onclick='copycmd()') Copy to clipboard
+            div
+                button(type='button' onclick='runcmd()') Run!
+                textarea#output(cols=60 rows=20 readonly)
         table(style='width:80%', border='2')
             tr
                 td(colspan='2')

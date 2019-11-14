@@ -1,8 +1,23 @@
+function getbash() {
+    return document.getElementById('bash').value;
+}
 
 function copycmd() {
     console.log('Copying bash command to clipboard...');
-    let bash = document.getElementById('bash').value;
-    navigator.clipboard.writeText(bash);
+    navigator.clipboard.writeText(getbash());
+}
+
+async function runcmd() {
+    const response = await fetch('/run', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cmd: getbash()})
+    });
+    const outjson = await response.json();
+
+    document.getElementById('output').value = outjson.stdout;
 }
 
 function search(searchbox) {
@@ -38,6 +53,7 @@ function showOpt(opt, query) {
 
 function onChange() {
     updateBash();
+    runcmd();
 }
 
 function updateBash() {
