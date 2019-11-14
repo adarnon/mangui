@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title mangui: #{cmd.name}
+    title mangui: #{cmd.alias}
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/cmdapp.js')
   body
@@ -11,8 +11,8 @@ html(lang='en')
         div Description: #{cmd.description}
         div Command:
             div
-                input(type='text' readonly)
-                button(type='button') Copy to clipboard
+                input#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
+                button(type='button' onclick='copycmd()') Copy to clipboard
         table(style='width:80%', border='2')
             tr
                 td(colspan='2')
@@ -30,7 +30,8 @@ html(lang='en')
                                     td= arg.name
                                     td
                                         if arg.type == 'binary'
-                                            input(type='checkbox')
+                                            input.opt(type='checkbox' data-name=arg.name onchange='onChange()')
+                                            
                                         else if arg.type == 'str'
-                                            input(type='text')
+                                            input.opt(type='text' data-name=arg.name onkeyup='onChange()')
                     td= opt.desc
