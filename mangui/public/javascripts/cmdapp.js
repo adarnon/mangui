@@ -5,22 +5,53 @@ function copycmd() {
     navigator.clipboard.writeText(bash);
 }
 
+function search(searchbox) {
+    let query = searchbox.value.trim();
+
+    let opts = document.querySelectorAll('tr.opt');
+    for (const x of opts) {
+        if (showOpt(x, query)) {
+            x.style.display = '';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+}
+
+function showOpt(opt, query) {
+    if (!query) {
+        return true;
+    }
+
+    query = query.toLowerCase();
+
+    let srch = opt.querySelectorAll(':scope .srch');
+    for (const x of srch) {
+        let val = x.innerText;
+        if (val.toLowerCase().includes(query)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function onChange() {
     updateBash();
 }
 
 function updateBash() {
-    let opts = document.querySelectorAll('.opt');
+    let choices = document.querySelectorAll('input.choice');
     let res = [];
-    for (const o of opts) {
-        if (o.type == 'checkbox') {
-            if (o.checked) {
-                res.push(o.getAttribute('data-name'));
+    for (const x of choices) {
+        if (x.type == 'checkbox') {
+            if (x.checked) {
+                res.push(x.getAttribute('data-name'));
             }
-        } else if (o.type == 'text') {
-            let s = o.value.trim();
+        } else if (x.type == 'text') {
+            let s = x.value.trim();
             if (s) {
-                res.push(o.getAttribute('data-name') + '=' + s);
+                res.push(x.getAttribute('data-name') + '=' + s);
             }
         }
     }

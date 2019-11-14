@@ -17,21 +17,21 @@ html(lang='en')
             tr
                 td(colspan='2')
                     | Search: 
-                    input(type='text')
+                    input#search(type='text' onkeyup='search(this)')
             tr
                 th Option
                 th Description
             each opt in cmd.options
-                tr
+                tr.opt
                     td
                         table(border='1')
                             each arg in opt.args
                                 tr
-                                    td= arg.name
+                                    td.srch= arg.name
                                     td
                                         if arg.type == 'binary'
-                                            input.opt(type='checkbox' data-name=arg.name onchange='onChange()')
+                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
                                             
                                         else if arg.type == 'str'
-                                            input.opt(type='text' data-name=arg.name onkeyup='onChange()')
-                    td= opt.desc
+                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
+                    td.srch= opt.desc
