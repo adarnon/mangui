@@ -1,10 +1,104 @@
-
 {
+    "alias": "wc",
     "name": "wc - print newline, word, and byte counts for each file",
     "synopsis": [
         "wc [OPTION]... [FILE]...",
         "wc [OPTION]... --files0-from=F"
     ],
     "description": "grep  searches the named input FILEs (or standard input if no files are\nnamed, or if a single hyphen-minus (-) is given as file name) for lines\ncontaining  a  match to the given PATTERN.  By default, grep prints the\nmatching lines.\nIn  addition,  three  variant  programs  egrep,  fgrep  and  rgrep  are\navailable.   egrep  is  the  same  as  grep -E.   fgrep  is the same as\ngrep -F.  rgrep is the same as grep -r.  Direct  invocation  as  either\negrep  or  fgrep  is  deprecated,  but  is provided to allow historical\napplications that rely on them to run unmodified.",
-    "options": []
+    "options": [
+        {
+            "args": [
+                {
+                    "name": "-c",
+                    "type": "binary"
+                },
+                {
+                    "name": "--bytes",
+                    "type": "binary"
+                }
+            ],
+            "desc": "print the byte counts"
+        },
+        {
+            "args": [
+                {
+                    "name": "-m",
+                    "type": "binary"
+                },
+                {
+                    "name": "--chars",
+                    "type": "binary"
+                }
+            ],
+            "desc": "print the character counts"
+        },
+        {
+            "args": [
+                {
+                    "name": "-l",
+                    "type": "binary"
+                },
+                {
+                    "name": "--lines",
+                    "type": "binary"
+                }
+            ],
+            "desc": "print the newline counts"
+        },
+        {
+            "args": [
+                {
+                    "name": "--files0-from",
+                    "metavar": "F",
+                    "type": "str"
+                }
+            ],
+            "desc": "read input from the files specified by NUL-terminated names in file F; If F is - then read names from standard input"
+        },
+        {
+            "args": [
+                {
+                    "name": "-L",
+                    "type": "binary"
+                },
+                {
+                    "name": "--max-line-length",
+                    "type": "binary"
+                }
+            ],
+            "desc": "print the length of the longest line"
+        },
+        {
+            "args": [
+                {
+                    "name": "-w",
+                    "type": "binary"
+                },
+                {
+                    "name": "--words",
+                    "type": "binary"
+                }
+            ],
+            "desc": "print the word counts"
+        },
+        {
+            "args": [
+                {
+                    "name": "--help",
+                    "type": "binary"
+                }
+            ],
+            "desc": "display this help and exit"
+        },
+        {
+            "args": [
+                {
+                    "name": "--version",
+                    "type": "binary"
+                }
+            ],
+            "desc": "output version information and exit"
+        }
+    ]
 }

@@ -1,9 +1,400 @@
 {
+    "alias": "sort",
     "name": "sort - sort lines of text files",
     "synopsis": [
         "sort [OPTION]... [FILE]...",
         "sort [OPTION]... --files0-from=F"
     ],
     "description": "Write sorted concatenation of all FILE(s) to standard output.\nWith no FILE, or when FILE is -, read standard input.\nMandatory arguments to long options are mandatory for short options\ntoo.  Ordering options:",
-    "options": []
+    "options": [
+        {
+            "args": [
+                {
+                    "name": "-b",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore-leading-blanks",
+                    "type": "binary"
+                }
+            ],
+            "desc": "ignore leading blanks"
+        },
+        {
+            "args": [
+                {
+                    "name": "-d",
+                    "type": "binary"
+                },
+                {
+                    "name": "--dictionary-order",
+                    "type": "binary"
+                }
+            ],
+            "desc": "consider only blanks and alphanumeric characters"
+        },
+        {
+            "args": [
+                {
+                    "name": "-f",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore-case",
+                    "type": "binary"
+                }
+            ],
+            "desc": "fold lower case to upper case characters"
+        },
+        {
+            "args": [
+                {
+                    "name": "-g",
+                    "type": "binary"
+                },
+                {
+                    "name": "--general-numeric-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "compare according to general numerical value"
+        },
+        {
+            "args": [
+                {
+                    "name": "-i",
+                    "type": "binary"
+                },
+                {
+                    "name": "--ignore-nonprinting",
+                    "type": "binary"
+                }
+            ],
+            "desc": "consider only printable characters"
+        },
+        {
+            "args": [
+                {
+                    "name": "-M",
+                    "type": "binary"
+                },
+                {
+                    "name": "--month-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "compare (unknown) < 'JAN' < ... < 'DEC'"
+        },
+        {
+            "args": [
+                {
+                    "name": "-h",
+                    "type": "binary"
+                },
+                {
+                    "name": "--human-numeric-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "compare human readable numbers (e.g., 2K 1G)"
+        },
+        {
+            "args": [
+                {
+                    "name": "-n",
+                    "type": "binary"
+                },
+                {
+                    "name": "--numeric-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "compare according to string numerical value"
+        },
+        {
+            "args": [
+                {
+                    "name": "-R",
+                    "type": "binary"
+                },
+                {
+                    "name": "--random-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "shuffle, but group identical keys.  See shuf(1)"
+        },
+        {
+            "args": [
+                {
+                    "name": "--random-source",
+                    "metavar": "FILE",
+                    "type": "str"
+                }
+            ],
+            "desc": "get random bytes from FILE"
+        },
+        {
+            "args": [
+                {
+                    "name": "-r",
+                    "type": "binary"
+                },
+                {
+                    "name": "--reverse",
+                    "type": "binary"
+                }
+            ],
+            "desc": "reverse the result of comparisons"
+        },
+        {
+            "args": [
+                {
+                    "name": "--sort",
+                    "metavar": "WORD",
+                    "type": "str"
+                }
+            ],
+            "desc": "sort according to WORD: general-numeric -g, human-numeric -h,\nmonth -M, numeric -n, random -R, version -V"
+        },
+        {
+            "args": [
+                {
+                    "name": "-V",
+                    "type": "binary"
+                },
+                {
+                    "name": "--version-sort",
+                    "type": "binary"
+                }
+            ],
+            "desc": "natural sort of (version) numbers within text"
+        },
+        {
+            "args": [
+                {
+                    "name": "--batch-size",
+                    "metavar": "NMERGE",
+                    "type": "str"
+                }
+            ],
+            "desc": "merge at most NMERGE inputs at once; for more use temp files"
+        },
+        {
+            "args": [
+                {
+                    "name": "-c",
+                    "type": "binary"
+                },
+                {
+                    "name": "--check",
+                    "type": "binary"
+                },
+                {
+                    "name": "--check",
+                    "metavar": "diagnose-first",
+                    "type": "str"
+                }
+            ],
+            "desc": "check for sorted input; do not sort"
+        },
+        {
+            "args": [
+                {
+                    "name": "-C",
+                    "type": "binary"
+                },
+                {
+                    "name": "--check",
+                    "metavar": "quiet",
+                    "type": "str"
+                },
+                {
+                    "name": "--check",
+                    "metavar": "silent",
+                    "type": "str"
+                }
+            ],
+            "desc": "like -c, but do not report first bad line"
+        },
+        {
+            "args": [
+                {
+                    "name": "--compress-program",
+                    "metavar": "PROG",
+                    "type": "str"
+                }
+            ],
+            "desc": "compress temporaries with PROG; decompress them with PROG -d"
+        },
+        {
+            "args": [
+                {
+                    "name": "--debug",
+                    "type": "binary"
+                }
+            ],
+            "desc": "annotate the part of the line used to sort, and warn about\nquestionable usage to stderr"
+        },
+        {
+            "args": [
+                {
+                    "name": "--files0-from",
+                    "metavar": "F",
+                    "type": "str"
+                }
+            ],
+            "desc": "read input from the files specified by NUL-terminated names in\nfile F; If F is - then read names from standard input"
+        },
+        {
+            "args": [
+                {
+                    "name": "-k",
+                    "type": "binary"
+                },
+                {
+                    "name": "--key",
+                    "metavar": "KEYDEF",
+                    "type": "str"
+                }
+            ],
+            "desc": "sort via a key; KEYDEF gives location and type"
+        },
+        {
+            "args": [
+                {
+                    "name": "-m",
+                    "type": "binary"
+                },
+                {
+                    "name": "--merge",
+                    "type": "binary"
+                }
+            ],
+            "desc": "merge already sorted files; do not sort"
+        },
+        {
+            "args": [
+                {
+                    "name": "-o",
+                    "type": "binary"
+                },
+                {
+                    "name": "--output",
+                    "metavar": "FILE",
+                    "type": "str"
+                }
+            ],
+            "desc": "write result to FILE instead of standard output"
+        },
+        {
+            "args": [
+                {
+                    "name": "-s",
+                    "type": "binary"
+                },
+                {
+                    "name": "--stable",
+                    "type": "binary"
+                }
+            ],
+            "desc": "stabilize sort by disabling last-resort comparison"
+        },
+        {
+            "args": [
+                {
+                    "name": "-S",
+                    "type": "binary"
+                },
+                {
+                    "name": "--buffer-size",
+                    "metavar": "SIZE",
+                    "type": "str"
+                }
+            ],
+            "desc": "use SIZE for main memory buffer"
+        },
+        {
+            "args": [
+                {
+                    "name": "-t",
+                    "type": "binary"
+                },
+                {
+                    "name": "--field-separator",
+                    "metavar": "SEP",
+                    "type": "str"
+                }
+            ],
+            "desc": "use SEP instead of non-blank to blank transition"
+        },
+        {
+            "args": [
+                {
+                    "name": "-T",
+                    "type": "binary"
+                },
+                {
+                    "name": "--temporary-directory",
+                    "metavar": "DIR",
+                    "type": "str"
+                }
+            ],
+            "desc": "use DIR for temporaries, not $TMPDIR or /tmp; multiple options\nspecify multiple directories"
+        },
+        {
+            "args": [
+                {
+                    "name": "--parallel",
+                    "metavar": "N",
+                    "type": "str"
+                }
+            ],
+            "desc": "change the number of sorts run concurrently to N"
+        },
+        {
+            "args": [
+                {
+                    "name": "-u",
+                    "type": "binary"
+                },
+                {
+                    "name": "--unique",
+                    "type": "binary"
+                }
+            ],
+            "desc": "with -c, check for strict ordering; without -c, output only\nthe first of an equal run"
+        },
+        {
+            "args": [
+                {
+                    "name": "-z",
+                    "type": "binary"
+                },
+                {
+                    "name": "--zero-terminated",
+                    "type": "binary"
+                }
+            ],
+            "desc": "line delimiter is NUL, not newline"
+        },
+        {
+            "args": [
+                {
+                    "name": "--help",
+                    "type": "binary"
+                }
+            ],
+            "desc": "display this help and exit"
+        },
+        {
+            "args": [
+                {
+                    "name": "--version",
+                    "type": "binary"
+                }
+            ],
+            "desc": "output version information and exit"
+        }
+    ]
 }
