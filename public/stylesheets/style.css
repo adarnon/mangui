@@ -1,8 +1,7 @@
-span.copytoclip {
-  content: url('/icons/copytoclipboard.svg');
+.svgbtn {
   display: inline-block;
-  height: 52px;
-  width: 52px;
+  height: 38px;
+  width: 38px;
 }
 
 textarea.terminal {

@@ -1,30 +1,49 @@
-document.addEventListener('DOMContentLoaded', (event) =>{
-    runcmd();
+document.addEventListener('DOMContentLoaded', (event) => {
+    runCmd();
 });
 
-function getbash() {
-    return document.getElementById('bash').value;
+function getCmd() {
+    let bashElem = document.getElementById('bash');
+
+    let bash = bashElem.value.trim();
+    if (!bash) {
+        return bashElem.getAttribute('data-alias');
+    }
+
+    return bash;
 }
 
-function copycmd() {
+function resetForm() {
+    let form = document.getElementById('cmdform');
+
+    form.reset();
+    let lbls = document.querySelectorAll('label.choice-lbl');
+    for (let x of lbls) {
+        x.classList.remove('active');
+    }
+
+    onChange();
+}
+
+function copyCmd() {
     console.log('Copying bash command to clipboard...');
-    navigator.clipboard.writeText(getbash());
+    navigator.clipboard.writeText(getCmd());
 }
 
-async function runcmd() {
+async function runCmd() {
     const response = await fetch('/run', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ cmd: getbash()})
+        body: JSON.stringify({ cmd: getCmd() })
     });
     const outjson = await response.json();
 
     document.getElementById('output').value = outjson.stdout;
 }
 
-function search(searchbox) {
+function searchOpt(searchbox) {
     let query = searchbox.value.trim();
 
     let opts = document.querySelectorAll('tr.opt');
@@ -57,7 +76,7 @@ function showOpt(opt, query) {
 
 function onChange() {
     updateBash();
-    runcmd();
+    runCmd();
 }
 
 function updateBash() {
@@ -65,9 +84,9 @@ function updateBash() {
     let argsElem = document.getElementById('args');
     let choices = document.querySelectorAll('input.choice');
 
-    let res = [bashElem.getAttribute('data-alias')];
+    let res = [];
 
-    for (const x of choices) {
+    iterOpts((x) => {
         if (x.type == 'checkbox') {
             if (x.checked) {
                 res.push(x.getAttribute('data-name'));
@@ -78,12 +97,24 @@ function updateBash() {
                 res.push(x.getAttribute('data-name') + '=' + s);
             }
         }
-    }
+    })
 
     let argsVal = argsElem.value.trim();
     if (argsVal) {
         res.push(argsVal);
     }
 
-    bashElem.value = res.join(' ');
+    if (res.length == 0) {
+        bashElem.value = '';
+    } else {
+        res.unshift(bashElem.getAttribute('data-alias'));
+        bashElem.value = res.join(' ');
+    }
+}
+
+function iterOpts(cb) {
+    let choices = document.querySelectorAll('input.choice');
+    for (const x of choices) {
+        cb(x);
+    }
 }

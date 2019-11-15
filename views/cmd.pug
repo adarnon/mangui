@@ -10,7 +10,7 @@ html(lang='en')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
     script(src='/javascripts/cmdapp.js')
   body
-    .container.col-9
+    .container.col-10
         .row
             p.col.h1.text-center MANGUI
         .row
@@ -22,47 +22,54 @@ html(lang='en')
                     dd.col-10(class='text-monospace') #{cmd.synopsis}
                     dt.col-2 Description:
                     dd.col-10(class='text-monospace') #{cmd.description}
-        .row
-            .col
-                .row
-                    input.col#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias value=cmd.alias readonly)
-                    button.col-1(class='btn btn-sm btn-block btn-primary' type='button' onclick='copycmd()')
-                        span.copytoclip
-                .row
-                    textarea.col.terminal#output(class='text-monospace' rows=8 readonly)
-        .row
-            .col
-                .row
-                    p.col.h2.text-center Arguments
-                .row
-                    input.col#args(type='text' placeholder='Arguments...' onkeyup='onChange()')
-        .row
-            .col
-                .row
-                    p.col.h2.text-center Options
-                .row.m2-1
-                    input.col#search(type='text' placeholder='Search...' onkeyup='search(this)')
-                .row
-                    table.col(class='table table-bordered table-striped table-hover')
-                        thead.thead-dark
-                            tr
-                            tr
-                                th(scope=col) Option
-                                th(scope=col) Description
-                        tbody
-                            each opt in cmd.options
-                                tr.opt
-                                    td
-                                        each arg in opt.args
-                                            if arg.type == 'binary'
-                                                span(class='btn-group-toggle mr-1' data-toggle='buttons')
-                                                    label(class='btn btn-secondary')
-                                                        .srch(class='text-monospace')= arg.name
-                                                        input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
-                                            else if arg.type == 'str'
-                                                span(class='btn-group')
-                                                    label(class='btn btn-secondary')
-                                                        .srch(class='text-monospace')= arg.name
-                                                        input.choice(type='text' data-name=arg.name onkeyup='onChange()')
-                                    td
-                                        p.srch(class='text-justify text-monospace')= opt.desc
+        form#cmdform
+            .row.mb-3
+                .col
+                    .row
+                        .col
+                            .input-group.mb-1
+                                div(class='input-group-prepend')
+                                    button.svgbtn(class='btn btn-primary p-0' type='button' onclick='resetForm()')
+                                        include icons/reset.svg
+                                input#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias placeholder=cmd.synopsis[0] readonly)
+                                div(class='input-group-append')
+                                    button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
+                                        include icons/copytoclipboard.svg
+                    .row
+                        textarea.col.terminal#output(class='text-monospace' rows=8 readonly)
+            .row
+                .col
+                    .row
+                        p.col.h2.text-center Arguments
+                    .row
+                        input.col#args(type='text' class='form-control' placeholder='Command arguments...' onkeyup='onChange()')
+            .row
+                .col
+                    .row
+                        p.col.h2.text-center Options
+                    .row.mb-1
+                        input.col#search(type='text' class='form-control' placeholder='Search options below...' onkeyup='searchOpt(this)')
+                    .row
+                        table.col(class='table table-bordered table-striped table-hover')
+                            thead.thead-dark
+                                tr
+                                tr
+                                    th(scope=col) Option
+                                    th(scope=col) Description
+                            tbody
+                                each opt in cmd.options
+                                    tr.opt
+                                        td
+                                            each arg in opt.args
+                                                if arg.type == 'binary'
+                                                    span(class='btn-group-toggle mr-1' data-toggle='buttons')
+                                                        label.choice-lbl(class='btn btn-secondary')
+                                                            .srch(class='text-monospace')= arg.name
+                                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
+                                                else if arg.type == 'str'
+                                                    span(class='btn-group')
+                                                        label(class='btn btn-secondary')
+                                                            .srch(class='text-monospace')= arg.name
+                                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
+                                        td
+                                            .srch(class='text-justify text-monospace')= opt.desc
