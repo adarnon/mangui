@@ -15,37 +15,37 @@ html(lang='en')
             p.col.h1.text-center MANGUI
         .row
             .col
-                .row
-                    p.col-2 Name:
-                    .col #{cmd.name}
-                .row
-                    .col-2 Synopsis:
-                    .col #{cmd.synopsis}
-                .row
-                    .col-2 Description:
-                    .col #{cmd.description}
+                dl.row
+                    dt.col-2 Name:
+                    dd.col-10 #{cmd.name}
+                    dt.col-2 Synopsis:
+                    dd.col-10 #{cmd.synopsis}
+                    dt.col-2 Description:
+                    dd.col-10 #{cmd.description}
         .row
             .col
                 .row
                     input.col#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
-                    button.col-1(class='btn btn-primary' type='button' onclick='copycmd()')
+                    button.col-1(class='btn btn-sm btn-block btn-primary' type='button' onclick='copycmd()')
                         span.copytoclip
                 .row
                     textarea.col#output(readonly)
         .row
             .col
-                .row.col.h2 Arguments
+                .row
+                    p.col.h2.text-center Arguments
                 .row
                     input.col(type='text' placeholder='Arguments...')
         .row
             .col
-                .row.col.h2 Options
                 .row
-                    table(class='table table-bordered table-striped table-hover')
-                        thead
+                    p.col.h2.text-center Options
+                .row.mb-1
+                    input.col#search(type='text' placeholder='Search...' onkeyup='search(this)')
+                .row
+                    table.col(class='table table-bordered table-striped table-hover')
+                        thead.thead-dark
                             tr
-                                td(colspan='2')
-                                    input#search(type='text' placeholder='Search...' onkeyup='search(this)')
                             tr
                                 th(scope=col) Option
                                 th(scope=col) Description
@@ -53,14 +53,16 @@ html(lang='en')
                             each opt in cmd.options
                                 tr.opt
                                     td
-                                        table(class='table table-bordered table-sm')
-                                            each arg in opt.args
-                                                tr
-                                                    td.srch= arg.name
-                                                    td
-                                                        if arg.type == 'binary'
-                                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
-                                                            
-                                                        else if arg.type == 'str'
-                                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
-                                    td.srch= opt.desc
+                                        each arg in opt.args
+                                            if arg.type == 'binary'
+                                                span(class='btn-group-toggle mr-1' data-toggle='buttons')
+                                                    label(class='btn btn-secondary')
+                                                        .srch= arg.name
+                                                        input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
+                                            else if arg.type == 'str'
+                                                span(class='btn-group')
+                                                    label(class='btn btn-secondary')
+                                                        .srch= arg.name
+                                                        input.choice(type='text' data-name=arg.name onkeyup='onChange()')
+                                    td
+                                        p.srch(class='text-justify')= opt.desc
