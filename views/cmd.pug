@@ -25,22 +25,22 @@ html(lang='en')
         .row
             .col
                 .row
-                    input.col#bash(type='text' class='text-monospace' data-alias=cmd.alias value=cmd.alias readonly)
+                    input.col#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias value=cmd.alias readonly)
                     button.col-1(class='btn btn-sm btn-block btn-primary' type='button' onclick='copycmd()')
                         span.copytoclip
                 .row
-                    textarea.col#output(class='text-monospace' readonly)
+                    textarea.col.terminal#output(class='text-monospace' rows=8 readonly)
         .row
             .col
                 .row
                     p.col.h2.text-center Arguments
                 .row
-                    input.col(type='text' placeholder='Arguments...')
+                    input.col#args(type='text' placeholder='Arguments...' onkeyup='onChange()')
         .row
             .col
                 .row
                     p.col.h2.text-center Options
-                .row.mb-1
+                .row.m2-1
                     input.col#search(type='text' placeholder='Search...' onkeyup='search(this)')
                 .row
                     table.col(class='table table-bordered table-striped table-hover')

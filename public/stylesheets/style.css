@@ -4,3 +4,11 @@ span.copytoclip {
   height: 52px;
   width: 52px;
 }
+
+textarea.terminal {
+    background-color: #000;
+    border: 1px solid #000;
+    color: #00ff00;
+    padding: 8px;
+    font-family: courier new;
+}
