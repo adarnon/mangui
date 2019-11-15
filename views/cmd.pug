@@ -27,18 +27,17 @@ html(lang='en')
                 .col
                     .row
                         .col
-                            .input-group.mb-1
-                                div(class='input-group-prepend')
-                                    button.svgbtn(class='btn btn-primary p-0' type='button' onclick='resetForm()')
-                                        include icons/reset.svg
-                                input#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias placeholder=cmd.synopsis[0] readonly)
-                                div(class='input-group-append')
-                                    button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
-                                        include icons/copytoclipboard.svg
+                            .form-inline.form-group.justify-content-center
+                                button.svgbtn(class='btn btn-primary p-0' type='button' onclick='resetForm()')
+                                    include icons/reset.svg
+                                input#bash(type='text' class='text-monospace form-control flex-grow-1' data-alias=cmd.alias placeholder=cmd.synopsis[0] readonly)
+                                input#args(type='text' class='form-control' placeholder='Arguments...' onkeyup='onChange()')
+                                button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
+                                    include icons/copytoclipboard.svg
                     .row
                         textarea.col.terminal#output(class='text-monospace rounded' rows=8 readonly)
             .row.bg-light.rounded
-                .col-9.mr-3
+                .col
                     .row
                         p.col.h2.text-center Options
                     .row.mb-1
@@ -56,19 +55,14 @@ html(lang='en')
                                         td
                                             each arg in opt.args
                                                 if arg.type == 'binary'
-                                                    span(class='btn-group-toggle mr-1' data-toggle='buttons')
-                                                        label.choice-lbl(class='btn btn-secondary')
+                                                    span(class='btn-group-toggle form-check form-check-inline mr-1' data-toggle='buttons')
+                                                        label.choice-lbl(class='btn btn-secondary form-check-label')
                                                             .srch(class='text-monospace')= arg.name
-                                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
+                                                            input.choice(type='checkbox' class='form-check-input' data-name=arg.name onchange='onChange()')
                                                 else if arg.type == 'str'
-                                                    span(class='btn-group')
+                                                    span(class='btn-group form-check form-check-inline')
                                                         label(class='btn btn-secondary')
                                                             .srch(class='text-monospace')= arg.name
-                                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
+                                                            input.choice(type='text' class='form-control form-control-sm' data-name=arg.name onkeyup='onChange()')
                                         td
                                             .srch(class='text-justify text-monospace')= opt.desc
-                .col
-                    .row
-                        p.col.h2.text-center Arguments
-                    .row
-                        input.col#args(type='text' class='form-control' placeholder='Positional arguments...' onkeyup='onChange()')
