@@ -17,19 +17,19 @@ html(lang='en')
             .col
                 dl.row
                     dt.col-2 Name:
-                    dd.col-10 #{cmd.name}
+                    dd.col-10(class='text-monospace') #{cmd.name}
                     dt.col-2 Synopsis:
-                    dd.col-10 #{cmd.synopsis}
+                    dd.col-10(class='text-monospace') #{cmd.synopsis}
                     dt.col-2 Description:
-                    dd.col-10 #{cmd.description}
+                    dd.col-10(class='text-monospace') #{cmd.description}
         .row
             .col
                 .row
-                    input.col#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
+                    input.col#bash(type='text' class='text-monospace' data-alias=cmd.alias value=cmd.alias readonly)
                     button.col-1(class='btn btn-sm btn-block btn-primary' type='button' onclick='copycmd()')
                         span.copytoclip
                 .row
-                    textarea.col#output(readonly)
+                    textarea.col#output(class='text-monospace' readonly)
         .row
             .col
                 .row
@@ -57,12 +57,12 @@ html(lang='en')
                                             if arg.type == 'binary'
                                                 span(class='btn-group-toggle mr-1' data-toggle='buttons')
                                                     label(class='btn btn-secondary')
-                                                        .srch= arg.name
+                                                        .srch(class='text-monospace')= arg.name
                                                         input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
                                             else if arg.type == 'str'
                                                 span(class='btn-group')
                                                     label(class='btn btn-secondary')
-                                                        .srch= arg.name
+                                                        .srch(class='text-monospace')= arg.name
                                                         input.choice(type='text' data-name=arg.name onkeyup='onChange()')
                                     td
-                                        p.srch(class='text-justify')= opt.desc
+                                        p.srch(class='text-justify text-monospace')= opt.desc
