@@ -13,7 +13,7 @@ html(lang='en')
     .container.col-10
         .row
             p.col.h1.text-center MANGUI
-        .row
+        .row.bg-light.rounded.text-dark
             .col
                 dl.row
                     dt.col-2 Name:
@@ -23,7 +23,7 @@ html(lang='en')
                     dt.col-2 Description:
                     dd.col-10(class='text-monospace') #{cmd.description}
         form#cmdform
-            .row.mb-3
+            .row.mb-3.p-3.bg-secondary.border.rounded
                 .col
                     .row
                         .col
@@ -36,15 +36,9 @@ html(lang='en')
                                     button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
                                         include icons/copytoclipboard.svg
                     .row
-                        textarea.col.terminal#output(class='text-monospace' rows=8 readonly)
-            .row
-                .col
-                    .row
-                        p.col.h2.text-center Arguments
-                    .row
-                        input.col#args(type='text' class='form-control' placeholder='Command arguments...' onkeyup='onChange()')
-            .row
-                .col
+                        textarea.col.terminal#output(class='text-monospace rounded' rows=8 readonly)
+            .row.bg-light.rounded
+                .col-9.mr-3
                     .row
                         p.col.h2.text-center Options
                     .row.mb-1
@@ -73,3 +67,8 @@ html(lang='en')
                                                             input.choice(type='text' data-name=arg.name onkeyup='onChange()')
                                         td
                                             .srch(class='text-justify text-monospace')= opt.desc
+                .col
+                    .row
+                        p.col.h2.text-center Arguments
+                    .row
+                        input.col#args(type='text' class='form-control' placeholder='Positional arguments...' onkeyup='onChange()')
