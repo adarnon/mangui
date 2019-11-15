@@ -57,8 +57,9 @@ function onChange() {
 }
 
 function updateBash() {
+    let bashElem = document.getElementById('bash');
     let choices = document.querySelectorAll('input.choice');
-    let res = [];
+    let res = [bashElem.getAttribute('data-alias')];
     for (const x of choices) {
         if (x.type == 'checkbox') {
             if (x.checked) {
@@ -72,12 +73,5 @@ function updateBash() {
         }
     }
 
-
-    let resStr = '';
-    if (res.length > 0) {
-        resStr = ' ' + res.join(' ');
-    }
-
-    let bashElem = document.getElementById('bash');
-    bashElem.value = bashElem.getAttribute('data-alias') + resStr;
+    bashElem.value = res.join(' ');
 }
