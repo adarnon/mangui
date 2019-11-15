@@ -10,36 +10,57 @@ html(lang='en')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
     script(src='/javascripts/cmdapp.js')
   body
-    div.container
-        div Name: #{cmd.name}
-        div Synopsis: #{cmd.synopsis}
-        div Description: #{cmd.description}
-        div Command:
-            div
-                input#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
-                button(class='btn btn-primary' type='button' onclick='copycmd()') Copy to clipboard
-            div
-                button(type='button' onclick='runcmd()') Run!
-                textarea#output(cols=60 rows=20 readonly)
-        table(class='table table-bordered table-hover' style='width:80%')
-            tr
-                td(colspan='2')
-                    | Search: 
-                    input#search(type='text' onkeyup='search(this)')
-            tr
-                th(scope=col) Option
-                th(scope=col) Description
-            each opt in cmd.options
-                tr.opt
-                    td
-                        table(class='table table-bordered table-sm')
-                            each arg in opt.args
-                                tr
-                                    td.srch= arg.name
+    .container.col-9
+        .row
+            p.col.h1.text-center MANGUI
+        .row
+            .col
+                .row
+                    p.col-2 Name:
+                    .col #{cmd.name}
+                .row
+                    .col-2 Synopsis:
+                    .col #{cmd.synopsis}
+                .row
+                    .col-2 Description:
+                    .col #{cmd.description}
+        .row
+            .col
+                .row
+                    input.col#bash(type='text' data-alias=cmd.alias value=cmd.alias readonly)
+                    button.col-1(class='btn btn-primary' type='button' onclick='copycmd()')
+                        span.copytoclip
+                .row
+                    textarea.col#output(readonly)
+        .row
+            .col
+                .row.col.h2 Arguments
+                .row
+                    input.col(type='text' placeholder='Arguments...')
+        .row
+            .col
+                .row.col.h2 Options
+                .row
+                    table(class='table table-bordered table-striped table-hover')
+                        thead
+                            tr
+                                td(colspan='2')
+                                    input#search(type='text' placeholder='Search...' onkeyup='search(this)')
+                            tr
+                                th(scope=col) Option
+                                th(scope=col) Description
+                        tbody
+                            each opt in cmd.options
+                                tr.opt
                                     td
-                                        if arg.type == 'binary'
-                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
-                                            
-                                        else if arg.type == 'str'
-                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
-                    td.srch= opt.desc
+                                        table(class='table table-bordered table-sm')
+                                            each arg in opt.args
+                                                tr
+                                                    td.srch= arg.name
+                                                    td
+                                                        if arg.type == 'binary'
+                                                            input.choice(type='checkbox' data-name=arg.name onchange='onChange()')
+                                                            
+                                                        else if arg.type == 'str'
+                                                            input.choice(type='text' data-name=arg.name onkeyup='onChange()')
+                                    td.srch= opt.desc

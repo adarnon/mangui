@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', (event) =>{
+    runcmd();
+})
+
 function getbash() {
     return document.getElementById('bash').value;
 }

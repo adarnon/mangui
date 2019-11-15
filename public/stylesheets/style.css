@@ -1,8 +1,6 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+span.copytoclip {
+  content: url('/icons/copytoclipboard.svg');
+  display: inline-block;
+  height: 52px;
+  width: 52px;
 }
