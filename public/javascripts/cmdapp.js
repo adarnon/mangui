@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    runCmd();
+    onChange();
 });
 
 function getCmd() {
@@ -81,20 +81,37 @@ function onChange() {
 
 function updateBash() {
     let bashElem = document.getElementById('bash');
+    let builtElem = document.getElementById('built');
     let argsElem = document.getElementById('args');
     let choices = document.querySelectorAll('input.choice');
+    let alias = bashElem.getAttribute('data-alias');
 
     let res = [];
+    let builtRes = [createOptElem(null, alias, null)];
 
     iterOpts((x) => {
         if (x.type == 'checkbox') {
             if (x.checked) {
-                res.push(x.getAttribute('data-name'));
+                let name = x.getAttribute('data-name');
+                res.push(name);
+                builtRes.push(createOptElem(x, name, (event) => {
+                    x.checked = false;
+
+                    let changeEvt = new Event('change');
+                    x.dispatchEvent(changeEvt);
+                }));
             }
         } else if (x.type == 'text') {
             let s = x.value.trim();
             if (s) {
-                res.push(x.getAttribute('data-name') + '=' + s);
+                let name = x.getAttribute('data-name') + '=' + s;
+                res.push(name);
+                builtRes.push(createOptElem(x, name, (event) => {
+                    x.value = '';
+
+                    let changeEvt = new Event('keyup');
+                    x.dispatchEvent(changeEvt);
+                }));
             }
         }
     })
@@ -107,9 +124,35 @@ function updateBash() {
     if (res.length == 0) {
         bashElem.value = '';
     } else {
-        res.unshift(bashElem.getAttribute('data-alias'));
+        res.unshift(alias);
         bashElem.value = res.join(' ');
     }
+
+    while (builtElem.firstChild) {
+        builtElem.removeChild(builtElem.firstChild);
+    }
+    for (let x of builtRes) {
+        builtElem.appendChild(x);
+    }
+}
+
+function createOptElem(x, name, closeCb) {
+    let e = document.createElement('text');
+    e.classList.add('text-monospace');
+    e.classList.add('form-control');
+    e.classList.add('bg-info');
+    e.innerText = name;
+
+    if (closeCb) {
+        let times = document.createElement('span');
+        times.classList.add('close');
+        times.innerHTML = '&times;';
+        times.onclick = closeCb;
+
+        e.appendChild(times);
+    }
+
+    return e;
 }
 
 function iterOpts(cb) {
