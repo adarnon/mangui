@@ -141,11 +141,13 @@ function createOptElem(x, name, closeCb) {
     e.classList.add('text-monospace');
     e.classList.add('form-control');
     e.classList.add('bg-info');
+    e.classList.add('opt-elem');
     e.innerText = name;
 
     if (closeCb) {
         let times = document.createElement('span');
         times.classList.add('close');
+        times.classList.add('pl-2');
         times.innerHTML = '&times;';
         times.onclick = closeCb;
 

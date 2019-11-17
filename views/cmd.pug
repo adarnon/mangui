@@ -34,47 +34,51 @@ html(lang='en')
                                 // XXX The #bash element is no longer used visually, but is still used to build the command string that is sent to the server
                                 // This some be fixed one day, since we're building the command with the nice text blocks, so the info is there anyway
                                 input#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias placeholder=cmd.synopsis[0] readonly hidden)
-                                #built(class='bg-light')
+                                #built
                                 input#args(type='text' class='form-control flex-grow-1' placeholder='Arguments...' onkeyup='onChange()')
                                 button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
                                     include icons/copytoclipboard.svg
                     .row
                         textarea.col.terminal#output(class='text-monospace rounded' rows=8 readonly)
             .row
-                .col
-                    .row
-                        p.col.h2.text-center StackOverflow Search
+                .col.bg-light
                     .row
                         .col
-                            script(async src="https://cse.google.com/cse.js?cx=012124398604211470898:wuwpa9jv4vg")
-                            .gcse-search
-            .row.bg-light.rounded
-                .col
+                            ul.nav.nav-tabs.nav-fill
+                                li.nav-item
+                                    a.nav-link.active#options-tab(href='#options' data-toggle='tab') Options
+                                li.nav-item
+                                    a.nav-link#search-tab(href='#search' data-toggle='tab') StackOverflow Search
                     .row
-                        p.col.h2.text-center Options
-                    .row.mb-1
-                        input.col#search(type='text' class='form-control' placeholder='Search options below...' onkeyup='searchOpt(this)')
-                    .row
-                        table.col(class='table table-bordered table-striped table-hover')
-                            thead.thead-dark
-                                tr
-                                tr
-                                    th(scope=col) Option
-                                    th(scope=col) Description
-                            tbody
-                                each opt in cmd.options
-                                    tr.opt
-                                        td
-                                            each arg in opt.args
-                                                if arg.type == 'binary'
-                                                    span(class='btn-group-toggle form-check form-check-inline mr-1' data-toggle='buttons')
-                                                        label.choice-lbl(class='btn btn-secondary form-check-label')
-                                                            .srch(class='text-monospace')= arg.name
-                                                            input.choice(type='checkbox' class='form-check-input' data-name=arg.name onchange='onChange()')
-                                                else if arg.type == 'str'
-                                                    span(class='btn-group form-check form-check-inline')
-                                                        label(class='btn btn-secondary')
-                                                            .srch(class='text-monospace')= arg.name
-                                                            input.choice(type='text' class='form-control form-control-sm' data-name=arg.name onkeyup='onChange()')
-                                        td
-                                            .srch(class='text-justify text-monospace')= opt.desc
+                        .col
+                            .tab-content
+                                .tab-pane.fade.show.active#options
+                                    .row.mb-1
+                                        input.col#optsearch(type='text' class='form-control' placeholder='Search options below...' onkeyup='searchOpt(this)')
+                                    .row
+                                        table.col(class='table table-bordered table-striped table-hover')
+                                            thead.thead-dark
+                                                tr
+                                                tr
+                                                    th(scope=col) Option
+                                                    th(scope=col) Description
+                                            tbody
+                                                each opt in cmd.options
+                                                    tr.opt
+                                                        td
+                                                            each arg in opt.args
+                                                                if arg.type == 'binary'
+                                                                    span(class='btn-group-toggle form-check form-check-inline mr-1' data-toggle='buttons')
+                                                                        label.choice-lbl(class='btn btn-secondary form-check-label')
+                                                                            .srch(class='text-monospace')= arg.name
+                                                                            input.choice(type='checkbox' class='form-check-input' data-name=arg.name onchange='onChange()')
+                                                                else if arg.type == 'str'
+                                                                    span(class='btn-group form-check form-check-inline')
+                                                                        label(class='btn btn-secondary')
+                                                                            .srch(class='text-monospace')= arg.name
+                                                                            input.choice(type='text' class='form-control form-control-sm' data-name=arg.name onkeyup='onChange()')
+                                                        td
+                                                            .srch(class='text-justify text-monospace')= opt.desc
+                                .tab-pane.fade#search
+                                    script(async src="https://cse.google.com/cse.js?cx=012124398604211470898:wuwpa9jv4vg")
+                                    .gcse-search

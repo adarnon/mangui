@@ -11,3 +11,11 @@ textarea.terminal {
     padding: 8px;
     font-family: courier new;
 }
+
+#built {
+  background: none;
+}
+
+.opt-elem {
+  border-color: #000;
+}
