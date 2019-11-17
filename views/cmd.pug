@@ -2,6 +2,7 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
+    meta(name='viewport' content="width=device-width, initial-scale=1")
     title mangui: #{cmd.alias}
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -33,12 +34,20 @@ html(lang='en')
                                 // XXX The #bash element is no longer used visually, but is still used to build the command string that is sent to the server
                                 // This some be fixed one day, since we're building the command with the nice text blocks, so the info is there anyway
                                 input#bash(type='text' class='text-monospace form-control' data-alias=cmd.alias placeholder=cmd.synopsis[0] readonly hidden)
-                                #built(class='bg-success flex-grow-1')
-                                input#args(type='text' class='form-control' placeholder='Arguments...' onkeyup='onChange()')
+                                #built(class='bg-light')
+                                input#args(type='text' class='form-control flex-grow-1' placeholder='Arguments...' onkeyup='onChange()')
                                 button.svgbtn(class='btn btn-primary p-0' type='button' onclick='copyCmd()')
                                     include icons/copytoclipboard.svg
                     .row
                         textarea.col.terminal#output(class='text-monospace rounded' rows=8 readonly)
+            .row
+                .col
+                    .row
+                        p.col.h2.text-center StackOverflow Search
+                    .row
+                        .col
+                            script(async src="https://cse.google.com/cse.js?cx=012124398604211470898:wuwpa9jv4vg")
+                            .gcse-search
             .row.bg-light.rounded
                 .col
                     .row
