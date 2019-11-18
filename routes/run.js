@@ -13,7 +13,7 @@ router.post('/', function (req, res, next) {
             cwd: 'samples'
         },
         (error, stdout, stderr) => {
-            res.json({ stdout: stdout });
+            res.json({ stdout: stdout, stderr: stderr });
         });
 });
 

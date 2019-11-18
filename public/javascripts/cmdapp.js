@@ -40,7 +40,14 @@ async function runCmd() {
     });
     const outjson = await response.json();
 
-    document.getElementById('output').value = outjson.stdout;
+    let outputElem = document.getElementById('output');
+    if (outjson.stderr) {
+        outputElem.value = outjson.stderr;
+        outputElem.style.color = '#FF0000';
+    } else {
+        outputElem.value = outjson.stdout;
+        outputElem.style.color = '#00FF00';
+    }
 }
 
 function searchOpt(searchbox) {
