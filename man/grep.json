@@ -3,7 +3,7 @@
     "name": "grep, egrep, fgrep, rgrep - print lines matching a pattern",
     "synopsis": [
         "grep [OPTIONS] PATTERN [FILE...]",
-        "grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]ls [OPTION]... [FILE]..."
+        "grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]"
     ],
     "description": "grep  searches the named input FILEs (or standard input if no files are\nnamed, or if a single hyphen-minus (-) is given as file name) for lines\ncontaining  a  match to the given PATTERN.  By default, grep prints the\nmatching lines.\nIn  addition,  three  variant  programs  egrep,  fgrep  and  rgrep  are\navailable.   egrep  is  the  same  as  grep -E.   fgrep  is the same as\ngrep -F.  rgrep is the same as grep -r.  Direct  invocation  as  either\negrep  or  fgrep  is  deprecated,  but  is provided to allow historical\napplications that rely on them to run unmodified.",
     "options": [
