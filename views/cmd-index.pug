@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Command List:
+
+  ul
+    each c in cmds
+      li
+        a(href='/cmd/' + c)= c
+          // XXX Hack to be removed when MANGUI is awesome
+          if c == 'ls'
+            |
+            | (Best example)

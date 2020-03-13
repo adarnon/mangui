@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  small A CLI GUI interface for the rookie developer.
+
+  p Index:
+    ul
+      each pg in subpages
+        li
+          a(href=pg.url)= pg.name

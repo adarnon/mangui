@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
+var path = require('path');
 var fs = require('fs');
+var glob = require('glob');
 
 router.get('/', function(req, res, next) {
-  res.send('Choose a command');
+  glob.glob('man/*.json', {}, (err, matches) => {
+    console.log(matches);
+    let cmds = matches.map((x) => path.basename(x, '.json'));
+    res.render('cmd-index', { cmds: cmds });
+  });
 });
 
 router.get('/:cmd', function(req, res, next) {
